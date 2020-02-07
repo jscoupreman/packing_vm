@@ -1,0 +1,11 @@
+{
+	"iso_checksum_type": "file",
+	"iso_checksum_url": "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/SHA512SUMS",
+	"iso_url": "https://cdimage.debian.org/debian-cd/current/amd64/iso-cd/debian-10.2.0-amd64-netinst.iso",
+	"iso_name": "debian-10.2.0-amd64-netinst.iso",
+	"preseed": "preseed.cfg",
+	"headless": "true",
+	"virtualbox_guest_os_type": "Debian_64",
+	"cpus": "1",
+	"memory": "512"
+}
