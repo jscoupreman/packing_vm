@@ -1,27 +1,27 @@
 {
-	"variables": {
-		"cm": "nocm",
-		"cm_version": "",
-		"cpus": "1",
-		"disk_size": "65536",
-		"ftp_proxy": "{{env `ftp_proxy`}}",
-		"headless": "",
-		"http_proxy": "{{env `http_proxy`}}",
-		"https_proxy": "{{env `https_proxy`}}",
-		"install_vagrant_key": "true",
-		"memory": "512",
-		"no_proxy": "{{env `no_proxy`}}",
-		"parallels_guest_os_type": "debian",
-		"preseed": "preseed-jessie.cfg",
-		"rsync_proxy": "{{env `rsync_proxy`}}",
-		"ssh_password": "vagrant",
-		"ssh_username": "vagrant",
-		"update": "false",
-		"version": "0.1.0",
-		"virtualbox_guest_os_type": "Debian_64",
-		"vm_name": "debian82",
-		"vmware_guest_os_type": "debian8-64"
-	  },
+  "variables": {
+    "cm": "nocm",
+    "cm_version": "",
+    "cpus": "1",
+    "disk_size": "65536",
+    "ftp_proxy": "{{env `ftp_proxy`}}",
+    "headless": "",
+    "http_proxy": "{{env `http_proxy`}}",
+    "https_proxy": "{{env `https_proxy`}}",
+    "install_vagrant_key": "true",
+    "memory": "512",
+    "no_proxy": "{{env `no_proxy`}}",
+    "parallels_guest_os_type": "debian",
+    "preseed": "preseed-jessie.cfg",
+    "rsync_proxy": "{{env `rsync_proxy`}}",
+    "ssh_password": "vagrant",
+    "ssh_username": "vagrant",
+    "update": "false",
+    "version": "0.1.0",
+    "virtualbox_guest_os_type": "Debian_64",
+    "vm_name": "debian82",
+    "vmware_guest_os_type": "debian8-64"
+  },
   "builders": [
     {
       "boot_command": [
@@ -55,10 +55,16 @@
       "type": "virtualbox-iso",
       "vboxmanage": [
         [
-          "modifyvm", "{{.Name}}", "--memory", "{{ user `memory` }}"
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "{{ user `memory` }}"
         ],
         [
-          "modifyvm", "{{.Name}}", "--cpus", "{{ user `cpus` }}"
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "{{ user `cpus` }}"
         ]
       ],
       "virtualbox_version_file": ".vbox_version",
@@ -74,7 +80,7 @@
   ],
   "provisioners": [
     {
-		"type":"",
+      "type": "",
       "environment_vars": [
         "CM={{user `cm`}}",
         "CM_VERSION={{user `cm_version`}}",

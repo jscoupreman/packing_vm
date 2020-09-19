@@ -1,0 +1,57 @@
+{
+    "variables": {
+        "cpus": "2",
+        "memory": "1024",
+        "disk_size": "65536",
+        "headless": "true",
+        "vm_name": "debian-10_2",
+        "ssh_password": "vagrant",
+        "ssh_username": "vagrant",
+        "ssh_wait_timeout": "1h",
+        "preseed": "debian/10.2.0/preseed.cfg",
+        "iso_checksum_type": "file",
+        "iso_checksum_url": "https://get.debian.org/images/archive/10.2.0/amd64/iso-cd/SHA512SUMS",
+        "iso_url": "https://get.debian.org/images/archive/10.2.0/amd64/iso-cd/debian-10.2.0-amd64-netinst.iso",
+        "iso_name": "debian-10.2.0-amd64-netinst.iso",
+        "virtualbox_guest_os_type": "Debian_64"
+    },
+    "builders": [
+        {
+            "type": "virtualbox-iso",
+            "boot_command": [
+                "<esc><wait>",
+                "install",
+                " auto",
+                " url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/{{ user `preseed` }}",
+                " debian-installer=en_US",
+                " locale=en_US",
+                " keymap=us",
+                " netcfg/get_hostname=vagrant",
+                " netcfg/get_domain=vm ",
+                "<enter>"
+            ],
+            "guest_os_type": "{{ user `virtualbox_guest_os_type` }}",
+            "disk_size": "{{ user `disk_size` }}",
+            "cpus": "{{ user `cpus` }}",
+            "memory": "{{ user `memory` }}",
+            "iso_url": "{{ user `iso_url` }}",
+            "iso_checksum_type": "{{ user `iso_checksum_type` }}",
+            "iso_checksum_url": "{{ user `iso_checksum_url` }}",
+            "output_directory": "output-{{ user `vm_name` }}-virtualbox-iso",
+            "http_directory": "http",
+            "ssh_password": "{{ user `ssh_password` }}",
+            "ssh_username": "{{ user `ssh_username` }}",
+            "ssh_wait_timeout": "{{ user `ssh_wait_timeout` }}",
+            "shutdown_command": "echo 'end VM build' | sudo -S shutdown -P now"
+        },
+        {
+            "type": "docker"
+        },
+        {
+            "type": "lxc"
+        },
+        {
+            "type": "proxmox"
+        }
+    ]
+}
